@@ -255,6 +255,35 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
+<h2>Contact Us</h2>
+<form>
+  <label for="name">Name:</label>
+  <input name="name" type="text"/><br/><br/>
+  <label for="email">Email:</label>
+  <input name="email" type="email"/><br/><br/>
+  <label for="name">Message:</label>
+  <textarea name="message"></textarea><br/><br/>
+  <input type="submit2"/>
+  <div>
+    <p id="result-text"></p>
+  </div>
+</form>
+
+
 </body>
 
 </html>
+
+<script>
+const form2 = document.querySelector('form2')
+form2.addEventListener('submit2', event => {
+  // prevent the form submit from refreshing the page
+  event.preventDefault()
+
+  const { name, email, message } = event.target
+  console.log('Name: ', name.value)
+  console.log('email: ', email.value)
+  console.log('Message: ', message.value)
+
+})
+</script>
