@@ -1,0 +1,34 @@
+<html lang="en">  
+    <header>
+    </header>
+    <body>
+        <h2>Contact Us</h2>
+<form>
+  <label for="name">Name:</label>
+  <input name="name" type="text"/><br/><br/>
+  <label for="email">Email:</label>
+  <input name="email" type="email"/><br/><br/>
+  <label for="name">Message:</label>
+  <textarea name="message"></textarea><br/><br/>
+  <input type="submit"/>
+  <div>
+    <p id="result-text"></p>
+  </div>
+</form>
+</body>
+<footer></footer>
+<html>
+    
+<script>
+const form = document.querySelector('form')
+form.addEventListener('submit', event => {
+  // prevent the form submit from refreshing the pages
+  event.preventDefault()
+
+  const { name, email, subject, message } = event.target
+  console.log('Name: ', name.value)
+  console.log('email: ', email.value)
+  console.log('Subject: ', subject.value)    
+  console.log('Message: ', message.value)
+})
+</script>
