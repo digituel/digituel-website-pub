@@ -186,7 +186,7 @@
           </div>
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+            <form method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
               <div class="row gy-4">
 
                 <div class="col-md-6">
@@ -255,40 +255,20 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
-<h2>Contact Us</h2>
-<form>
-  <label for="name">Name:</label>
-  <input name="name" type="text"/><br/><br/>
-  <label for="email">Email:</label>
-  <input name="email" type="email"/><br/><br/>
-  <label for="name">Message:</label>
-  <textarea name="message"></textarea><br/><br/>
-  <input type="submit"/>
-  <div>
-    <p id="result-text"></p>
-  </div>
-</form>
-
-
-
-
 </body>
 
 </html>
 
 <script>
-const form2 = document.querySelector('form')
-form2.addEventListener('submit', event => {
+const form = document.querySelector('form')
+form.addEventListener('submit', event => {
   // prevent the form submit from refreshing the pages
   event.preventDefault()
 
-  const { name, email, message } = event.target
+  const { name, email, subject, message } = event.target
   console.log('Name: ', name.value)
   console.log('email: ', email.value)
-  console.log('Message: ', message.value)  
-  console.log('Name: ', name.value)
-  console.log('email: ', email.value)
+  console.log('Subject: ', subject.value)    
   console.log('Message: ', message.value)
-
 })
 </script>
