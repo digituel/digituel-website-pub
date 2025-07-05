@@ -18,7 +18,7 @@
       let recaptcha = thisForm.getAttribute('data-recaptcha-site-key');
       
       if( ! action ) {
-        displayError(thisForm, 'The form action property is not set!');
+        displayError(thisForm, 'still figuring out what this does....The form action property is not set!');
         return;
       }
       thisForm.querySelector('.loading').classList.add('d-block');
@@ -28,10 +28,10 @@
       let formData = new FormData( thisForm );
 
       if ( recaptcha ) {
-        if(typeof grecaptcha !== "undefined" ) {
-          grecaptcha.ready(function() {
+        if(typeof recaptcha !== "undefined" ) {
+          recaptcha.ready(function() {
             try {
-              grecaptcha.execute(recaptcha, {action: 'php_email_form_submit'})
+              recaptcha.execute(recaptcha, {action: 'php_email_form_submit'})
               .then(token => {
                 formData.set('recaptcha-response', token);
                 php_email_form_submit(thisForm, action, formData);
