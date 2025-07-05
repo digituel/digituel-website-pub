@@ -1,14 +1,15 @@
 <html lang="en">  
-    <header>
-    </header>
+    <header></header>
     <body>
-        <h2>Contact Us</h2>
+<h2>Contact Us</h2>
 <form>
   <label for="name">Name:</label>
   <input name="name" type="text"/><br/><br/>
   <label for="email">Email:</label>
   <input name="email" type="email"/><br/><br/>
-  <label for="name">Message:</label>
+  <label for="subject">Subject:</label>
+  <input name="subject" type="text"/><br/><br/>
+  <label for="message">Message:</label>
   <textarea name="message"></textarea><br/><br/>
   <input type="submit"/>
   <div>
@@ -18,7 +19,7 @@
 </body>
 <footer></footer>
 <html>
-    
+
 <script>
 const form = document.querySelector('form')
 form.addEventListener('submit', event => {
