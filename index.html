@@ -263,11 +263,13 @@
   <input name="email" type="email"/><br/><br/>
   <label for="name">Message:</label>
   <textarea name="message"></textarea><br/><br/>
-  <input type="submit2"/>
+  <input type="submit"/>
   <div>
     <p id="result-text"></p>
   </div>
 </form>
+
+
 
 
 </body>
@@ -275,12 +277,15 @@
 </html>
 
 <script>
-const form2 = document.querySelector('form2')
-form2.addEventListener('submit2', event => {
-  // prevent the form submit from refreshing the page
+const form2 = document.querySelector('form')
+form2.addEventListener('submit', event => {
+  // prevent the form submit from refreshing the pages
   event.preventDefault()
 
   const { name, email, message } = event.target
+  console.log('Name: ', name.value)
+  console.log('email: ', email.value)
+  console.log('Message: ', message.value)  
   console.log('Name: ', name.value)
   console.log('email: ', email.value)
   console.log('Message: ', message.value)
