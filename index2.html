@@ -11,11 +11,15 @@
   <input name="subject" type="text"/><br/><br/>
   <label for="message">Message:</label>
   <textarea name="message"></textarea><br/><br/>
+
+  <div class="g-recaptcha" data-sitekey="6Leva3srAAAAAGp6ibQwYOoLdXlU0wmX8aYgaW1Q"></div>
+
   <input type="submit"/>
   <div>
     <p id="result-text"></p>
   </div>
 </form>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
 <footer></footer>
 <html>
@@ -42,6 +46,7 @@ form.addEventListener("submit", (event) => {
 
     // Use your API endpoint URL you copied from the previous step
   const endpoint = "https://8swie3wbbh.execute-api.us-east-1.amazonaws.com/default/sendContactsEmail";
+
   // We use JSON.stringify here so the data can be sent as a string via HTTP
     const body = JSON.stringify({
     senderName: name.value,
