@@ -14,28 +14,29 @@
 
   <div class="g-recaptcha" data-sitekey="6Leva3srAAAAAGp6ibQwYOoLdXlU0wmX8aYgaW1Q"></div>
 
-  <input type="submit"/>
+  <button class="g-recaptcha" 
+        data-sitekey="6Leva3srAAAAAGp6ibQwYOoLdXlU0wmX8aYgaW1Q" 
+        data-callback='onSubmit' 
+        data-action='submit'>Submit</button>
+
+  <!-- <input type="submit"/> -->
   <div>
     <p id="result-text"></p>
   </div>
 </form>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
 </body>
 <footer></footer>
 <html>
 
-<script>
-/* const form = document.querySelector('form')
-form.addEventListener('submit', event => {
-  // prevent the form submit from refreshing the pages
-  event.preventDefault()
+ <script>
+   function onSubmit(token) {
+     document.getElementById("demo-form").submit();
+   }
+ </script>
 
-  const { name, email, subject, message } = event.target
-  console.log('Name: ', name.value)
-  console.log('email: ', email.value)
-  console.log('Subject: ', subject.value)    
-  console.log('Message: ', message.value)
-}) */
+<script>
 
 const form = document.querySelector("form");
 form.addEventListener("submit", (event) => {
