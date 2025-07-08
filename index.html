@@ -25,6 +25,10 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
+  <!--reCAPTCHA library-->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
 </head>
 
 <body class="index-page">
@@ -185,32 +189,53 @@
 
           </div>
 
+<form action="?" method="POST">
+        
+  
+  <label for="name">Name:</label>
+  <input name="name" type="text"/><br/><br/>
+  <label for="email">Email:</label>
+  <input name="email" type="email"/><br/><br/>
+  <label for="subject">Subject:</label>
+  <input name="subject" type="text"/><br/><br/>
+  <label for="message">Message:</label>
+  <textarea name="message"></textarea><br/><br/>
+
+ <input type="submit" value="Submit">
+
+  <div>
+    <p id="result-text"></p>
+  </div>
+</form>
+
           <div class="col-lg-6">
-            <form method="post" class="php-email-form_old" data-aos="fade-up" data-aos-delay="200">
+            <form action="?" method="POST" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
               <div class="row gy-4">
 
                 <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="yes">
                 </div>
 
                 <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="yes">
                 </div>
 
                 <div class="col-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="yes">
                 </div>
 
                 <div class="col-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required="yes"></textarea>
                 </div>
-
+            <div class="g-recaptcha" data-sitekey="6LcIt3srAAAAAG6xQOXFhm3FB_N1qI5Ctj4AL-os"></div>
                 <div class="col-12 text-center">
                   <div class="loading">Loading</div>
                   <div class="error-message"></div>
+                  <p id="result-text"></p>
                   <div class="sent-message">Your message has been sent. Thank you!</div>
 
-                  <button type="submit">Send Message</button>
+                   <input type="submit" value="Submit">
+                  <!-- <button type="submit">Send Message</button> -->
                 </div>
 
               </div>
@@ -260,15 +285,40 @@
 </html>
 
 <script>
-const form = document.querySelector('form')
-form.addEventListener('submit', event => {
-  // prevent the form submit from refreshing the pages
-  event.preventDefault()
+const form = document.querySelector("form");
+form.addEventListener("submit", (event) => {
+  // prevent the form submit from refreshing the page
+  event.preventDefault();
 
-  const { name, email, subject, message } = event.target
-  console.log('Name: ', name.value)
-  console.log('email: ', email.value)
-  console.log('Subject: ', subject.value)    
-  console.log('Message: ', message.value)
-})
+  const { name, email, subject, message } = event.target;
+
+    // Use your API endpoint URL you copied from the previous step
+  const endpoint = "https://8swie3wbbh.execute-api.us-east-1.amazonaws.com/default/sendContactsEmail";
+
+  // We use JSON.stringify here so the data can be sent as a string via HTTP
+    const body = JSON.stringify({
+    senderName: name.value,
+    senderEmail: email.value,
+    subject: subject.value,
+    message: message.value
+  });
+  const requestOptions = {
+    method: "POST",
+    body
+  };
+
+  fetch(endpoint, requestOptions)
+    .then((response) => {
+      if (!response.ok) throw new Error("Error in fetch");
+      return response.json();
+    })
+    .then((response) => {
+      document.getElementById("result-text").innerText =
+        "Contact was successful!  If your message merits a response we will reply as soon as possible!";
+    })
+    .catch((error) => {
+      document.getElementById("result-text").innerText =
+        "C'mon Man!  An unkown error occured.";
+    });
+});
 </script>
