@@ -1,8 +1,12 @@
 <html lang="en">  
-    <header></header>
+    <header>
+          <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    </header>
     <body>
 <h2>Contact Us</h2>
-<form>
+<form action="?" method="POST">
+        
+  <div class="g-recaptcha" data-sitekey="6LcIt3srAAAAAG6xQOXFhm3FB_N1qI5Ctj4AL-os"></div>
   <label for="name">Name:</label>
   <input name="name" type="text"/><br/><br/>
   <label for="email">Email:</label>
@@ -12,20 +16,13 @@
   <label for="message">Message:</label>
   <textarea name="message"></textarea><br/><br/>
 
-  <div class="g-recaptcha" data-sitekey="6Leva3srAAAAAGp6ibQwYOoLdXlU0wmX8aYgaW1Q"></div>
+ <input type="submit" value="Submit">
 
-  <button class="g-recaptcha" 
-        data-sitekey="6Leva3srAAAAAGp6ibQwYOoLdXlU0wmX8aYgaW1Q" 
-        data-callback='onSubmit' 
-        data-action='submit'>Submit</button>
-
-  <!-- <input type="submit"/> -->
   <div>
     <p id="result-text"></p>
   </div>
 </form>
 
-<script src="https://www.google.com/recaptcha/api.js"></script>
 </body>
 <footer></footer>
 <html>
