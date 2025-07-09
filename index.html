@@ -272,13 +272,83 @@
 </html>
 
 <script>
-const form = document.querySelector("form");
+
+//To apply the same logic to both forms without duplicating everything, we use document.querySelectorAll("form") below,
+// to grab all forms and loop through them, applying event listeners or any shared behavior.
+
+const forms = document.querySelectorAll("form");
+
+forms.forEach(function(form) {
+  form.addEventListener("submit", function(event) {
+    // prevent the form submit from refreshing the page
+    event.preventDefault();
+    // `this` refers to the form being submitted
+    const data = new FormData(this);
+    
+    // Process form data below
+const { name, email, subject, message } = event.target;
+
+    // Use the API endpoint URL from the AWS API Gateway
+  const endpoint = "https://8swie3wbbh.execute-api.us-east-1.amazonaws.com/default/sendContactsEmail";
+
+  if ( name.value == null || name.value == undefined || name.value == "") {
+    name.value = email.value
+  }  
+  if ( subject.value == null || subject.value == undefined || subject.value == "") {
+    subject.value = email.value
+  }  
+  if (message.value == null || message.value == undefined || message.value == "") {
+    message.value = "Please subscribe this email to the newsletter"
+  }
+
+ // We use JSON.stringify here so the data can be sent as a string via HTTP
+  console.log("name.value:", name.value)
+  console.log("email.value:", email.value)
+  console.log("subject.value:", subject.value)
+  console.log("message.value:", message.value)
+  console.log("value of this:", this)
+  console.log("value of data:", data)
+
+    const body = JSON.stringify({
+    senderName: name.value,
+    senderEmail: email.value,
+    subject: subject.value,
+    message: message.value
+  });
+  const requestOptions = {
+    method: "POST",
+    body
+  };
+
+  fetch(endpoint, requestOptions)
+    .then((response) => {
+      if (!response.ok) throw new Error("Error in fetch");
+      return response.json();
+    })
+    .then((response) => {
+      document.getElementById("result-text").innerText =
+        "Contact was successful!";
+    })
+    .catch((error) => {
+      document.getElementById("result-text").innerText =
+        "C'mon Man!  An unkown error occured.";
+    });
+
+
+
+   // console.log("Submitting:", this.id, data.get("username"));
+  });
+});
+
+
+
+
+
+
+/* const form = document.querySelector("form");
 form.addEventListener("submit", (event) => {
   // prevent the form submit from refreshing the page
   event.preventDefault();
-  console.log("event content:")
-  console.log(event)
-  console.log(event.target)
 
   const { name, email, subject, message } = event.target;
 
@@ -325,5 +395,5 @@ form.addEventListener("submit", (event) => {
       document.getElementById("result-text").innerText =
         "C'mon Man!  An unkown error occured.";
     });
-});
+}); */
 </script>
