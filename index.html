@@ -287,6 +287,16 @@ form.addEventListener("submit", (event) => {
     console.log("subject.value:", subject.value)
   console.log("message.value:", message.value)
 
+  if (name.value == undefined || name.value == null || name.value == "") {
+    name.value = email.value
+  }  
+  if (subject.value == undefined || subject.value == null || subject.value == "") {
+    subject.value = email.value
+  }  
+  if (message.value == undefined || message.value == null || message.value == "") {
+    message.value = "Please subscribe this email to the newsletter"
+  }
+
     const body = JSON.stringify({
     senderName: name.value,
     senderEmail: email.value,
