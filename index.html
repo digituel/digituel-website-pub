@@ -281,13 +281,13 @@ form.addEventListener("submit", (event) => {
     // Use your API endpoint URL you copied from the previous step
   const endpoint = "https://8swie3wbbh.execute-api.us-east-1.amazonaws.com/default/sendContactsEmail";
 
-  if (name.value == undefined || name.value == null || name.value == "") {
+  if ( name.value == null || name.value == undefined || name.value == "") {
     name.value = email.value
   }  
-  if (subject.value == undefined || subject.value == null || subject.value == "") {
+  if ( subject.value == null || subject.value == undefined || subject.value == "") {
     subject.value = email.value
   }  
-  if (message.value == undefined || message.value == null || message.value == "") {
+  if (message.value == null || message.value == undefined || message.value == "") {
     message.value = "Please subscribe this email to the newsletter"
   }
 
@@ -296,7 +296,7 @@ form.addEventListener("submit", (event) => {
   console.log("email.value:", email.value)
   console.log("subject.value:", subject.value)
   console.log("message.value:", message.value)
-  
+
     const body = JSON.stringify({
     senderName: name.value,
     senderEmail: email.value,
